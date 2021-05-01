@@ -18,6 +18,7 @@
 </head>
 <body class="body_foreground body_background" style="font-size: normal;" >
 <pre class="ansi2html-content">
+
 $ slither contracts/CRPFactory.sol --print human-summary
 
 Compilation warnings/errors on contracts/CRPFactory.sol:
@@ -185,10 +186,10 @@ Reentrancy in ConfigurableRightsPool.joinPool(uint256,uint256[]) (contracts/CRPF
 		- bPool.setPublicSwap(origSwapState) (contracts/CRPFactory.sol#1700)
 	Event emitted after the call(s):
 	- LogJoin(msg.sender,t,tokenAmountIn) (contracts/CRPFactory.sol#2114)
-	- Transfer(sender,recipient,amount) (contracts/CRPFactory.sol#584)
-		- _pushPoolShare(msg.sender,poolAmountOut) (contracts/CRPFactory.sol#2120)
 	- Transfer(address(0),address(this),amount) (contracts/CRPFactory.sol#558)
 		- _mintPoolShare(poolAmountOut) (contracts/CRPFactory.sol#2119)
+	- Transfer(sender,recipient,amount) (contracts/CRPFactory.sol#584)
+		- _pushPoolShare(msg.sender,poolAmountOut) (contracts/CRPFactory.sol#2120)
 Reentrancy in CRPFactory.newCrp(address,ConfigurableRightsPool.PoolParams,RightsManager.Rights) (contracts/CRPFactory.sol#2633-2661):
 	External calls:
 	- crp = new ConfigurableRightsPool(factoryAddress,poolParams,rights) (contracts/CRPFactory.sol#2647-2651)

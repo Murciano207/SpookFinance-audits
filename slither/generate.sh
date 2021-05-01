@@ -15,6 +15,7 @@ format () {
 # Audit methods
 erc20 () {
   solc-select use $3
+  echo "" > tmp/$1.ansi
   run "slither contracts/$1 --print human-summary" tmp/$1.ansi
   run "slither contracts/$1" tmp/$1.ansi
   run "slither-check-erc contracts/$1 $2" tmp/$1.ansi
@@ -24,6 +25,7 @@ erc20 () {
 
 audit () {
   solc-select use $2
+  echo "" > tmp/$1.ansi
   run "slither contracts/$1 --print human-summary" tmp/$1.ansi
   run "slither contracts/$1" tmp/$1.ansi
   format $1
