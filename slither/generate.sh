@@ -10,7 +10,6 @@ run () {
 
 format () {
   cat tmp/$1.ansi | ansi2html > reports/$1.html
-  cat tmp/$1.ansi | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g' > reports/$1.md
 }
 
 # Audit methods
