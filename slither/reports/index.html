@@ -13,11 +13,15 @@
 		<meta property="og:url" content="https://slither.yogi.fi">
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/icon.png" />
-    <link 
+    <link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<nav>
-      <ul>
+    <div class="body">
+      <nav>
+        <a href="https://yogi.fi" class="brand">
+          <img src="https://raw.githubusercontent.com/yogi-fi/yogi-assets/master/logo/logo.svg" />
+          <span>Yogi</span>
+        </a>
         <a href="#Yogi.sol">Yogi.sol</a>
         <a href="#BActions.sol">BActions.sol</a>
         <a href="#BFactory.sol">BFactory.sol</a>
@@ -28,8 +32,9 @@
         <a href="#Multicall.sol">Multicall.sol</a>
         <a href="#PoolState.sol">PoolState.sol</a>
         <a href="#ProxyRegistry.sol">ProxyRegistry.sol</a>
-      </ul>
-    </nav>
-    <iframe src="./Yogi.sol.html"/>
+      </nav>
+      <iframe src="./Yogi.sol.html"/>
+    </div>
+    <script src="script.js" />
 	</body>
 </html>
