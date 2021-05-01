@@ -1,11 +1,33 @@
 #!/bin/bash
-set -ex
+set -x
 
-# Run cmd and log
+# Aux functions
 run () {
   printf "$ $1\n\n" &>> $2
   $1 &>> $2
   printf "\n\n" &>> $2
+}
+
+format () {
+  cat tmp/$1.ansi | ansi2html > reports/$1.html
+  cat tmp/$1.ansi | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g' > reports/$1.md
+}
+
+# Audit methods
+erc20 () {
+  solc-select use $3
+  run "slither contracts/$1 --print human-summary" tmp/$1.ansi
+  run "slither contracts/$1" tmp/$1.ansi
+  run "slither-check-erc contracts/$1 $2" tmp/$1.ansi
+  run "slither contracts/$1 --print contract-summary" tmp/$1.ansi
+  format $1
+}
+
+audit () {
+  solc-select use $2
+  run "slither contracts/$1 --print human-summary" tmp/$1.ansi
+  run "slither contracts/$1" tmp/$1.ansi
+  format $1
 }
 
 # Cleanup
@@ -13,11 +35,8 @@ pushd slither
 ([ -d tmp ] && rm -f tmp/*) || mkdir tmp
 [ -d reports ] || mkdir reports
 
-# Yogi.sol
-solc-select use 0.8.3
-run "slither contracts/Yogi.sol --print human-summary" tmp/Yogi.sol.ansi
-run "slither-check-erc contracts/Yogi.sol Yogi" tmp/Yogi.sol.ansi
-run "slither contracts/Yogi.sol --print contract-summary" tmp/Yogi.sol.ansi
-cat tmp/Yogi.sol.ansi | ansi2html > reports/Yogi.sol.html
+# Individual reports
+erc20 Yogi.sol Yogi 0.8.3 
+audit BActions.sol 0.6.12
 
 popd
