@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi91 { color: #ea4040; }
+.ansi92 { color: #40ea40; }
+.ansi94 { color: #4040ea; }
+.ansi95 { color: #ff90e8; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/Yogi.sol --print human-summary
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 421 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 0
+Number of contracts: 4 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">11</span>
+Number of informational issues: <span class="ansi92">6</span>
+Number of low issues: <span class="ansi92">0</span>
+Number of medium issues: <span class="ansi92">0</span>
+Number of high issues: <span class="ansi92">0</span>
+
+ERCs: ERC20
+
++------+-------------+-------+--------------------+--------------+----------+
+| Name | # functions |  ERCS |     ERC20 info     | Complex code | Features |
++------+-------------+-------+--------------------+--------------+----------+
+| Yogi |      26     | ERC20 |     <span class="ansi92">No Minting</span>     |      <span class="ansi92">No</span>      |          |
+|      |             |       | <span class="ansi91">Approve Race Cond.</span> |              |          |
+|      |             |       |                    |              |          |
++------+-------------+-------+--------------------+--------------+----------+
+INFO:Slither:contracts/Yogi.sol analyzed (4 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither-check-erc contracts/Yogi.sol Yogi
+
+# Check Yogi
+
+## Check functions
+[✓] totalSupply() is present
+	[✓] totalSupply() -&gt; () (correct return value)
+	[✓] totalSupply() is view
+[✓] balanceOf(address) is present
+	[✓] balanceOf(address) -&gt; () (correct return value)
+	[✓] balanceOf(address) is view
+[✓] transfer(address,uint256) is present
+	[✓] transfer(address,uint256) -&gt; () (correct return value)
+	[✓] Transfer(address,address,uint256) is emitted
+[✓] transferFrom(address,address,uint256) is present
+	[✓] transferFrom(address,address,uint256) -&gt; () (correct return value)
+	[✓] Transfer(address,address,uint256) is emitted
+[✓] approve(address,uint256) is present
+	[✓] approve(address,uint256) -&gt; () (correct return value)
+	[✓] Approval(address,address,uint256) is emitted
+[✓] allowance(address,address) is present
+	[✓] allowance(address,address) -&gt; () (correct return value)
+	[✓] allowance(address,address) is view
+[✓] name() is present
+	[✓] name() -&gt; () (correct return value)
+	[✓] name() is view
+[✓] symbol() is present
+	[✓] symbol() -&gt; () (correct return value)
+	[✓] symbol() is view
+[✓] decimals() is present
+	[✓] decimals() -&gt; () (correct return value)
+	[✓] decimals() is view
+
+## Check events
+[✓] Transfer(address,address,uint256) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+[✓] Approval(address,address,uint256) is present
+	[✓] parameter 0 is indexed
+	[✓] parameter 1 is indexed
+
+
+	[✓] Yogi has increaseAllowance(address,uint256)
+
+
+$ slither contracts/Yogi.sol --print contract-summary
+
+INFO:Printers:<span class="ansi94">
++ Contract IERC20
+</span><span class="ansi94">  - From IERC20
+</span><span class="ansi92">    - allowance(address,address) (external)
+</span><span class="ansi92">    - approve(address,uint256) (external)
+</span><span class="ansi92">    - balanceOf(address) (external)
+</span><span class="ansi92">    - totalSupply() (external)
+</span><span class="ansi92">    - transfer(address,uint256) (external)
+</span><span class="ansi92">    - transferFrom(address,address,uint256) (external)
+</span><span class="ansi94">
++ Contract Context
+</span><span class="ansi94">  - From Context
+</span><span class="ansi95">    - _msgData() (internal)
+</span><span class="ansi95">    - _msgSender() (internal)
+</span><span class="ansi94">
++ Contract ERC20
+</span><span class="ansi94">  - From Context
+</span><span class="ansi95">    - _msgData() (internal)
+</span><span class="ansi95">    - _msgSender() (internal)
+</span><span class="ansi94">  - From ERC20
+</span><span class="ansi95">    - _approve(address,address,uint256) (internal)
+</span><span class="ansi95">    - _beforeTokenTransfer(address,address,uint256) (internal)
+</span><span class="ansi95">    - _burn(address,uint256) (internal)
+</span><span class="ansi95">    - _mint(address,uint256) (internal)
+</span><span class="ansi95">    - _transfer(address,address,uint256) (internal)
+</span><span class="ansi92">    - allowance(address,address) (public)
+</span><span class="ansi92">    - approve(address,uint256) (public)
+</span><span class="ansi92">    - balanceOf(address) (public)
+</span><span class="ansi92">    - constructor(string,string) (public)
+</span><span class="ansi92">    - decimals() (public)
+</span><span class="ansi92">    - decreaseAllowance(address,uint256) (public)
+</span><span class="ansi92">    - increaseAllowance(address,uint256) (public)
+</span><span class="ansi92">    - name() (public)
+</span><span class="ansi92">    - symbol() (public)
+</span><span class="ansi92">    - totalSupply() (public)
+</span><span class="ansi92">    - transfer(address,uint256) (public)
+</span><span class="ansi92">    - transferFrom(address,address,uint256) (public)
+</span><span class="ansi94">
++ Contract Yogi (Most derived contract)
+</span><span class="ansi94">  - From ERC20
+</span><span class="ansi95">    - _approve(address,address,uint256) (internal)
+</span><span class="ansi95">    - _beforeTokenTransfer(address,address,uint256) (internal)
+</span><span class="ansi95">    - _burn(address,uint256) (internal)
+</span><span class="ansi95">    - _mint(address,uint256) (internal)
+</span><span class="ansi95">    - _transfer(address,address,uint256) (internal)
+</span><span class="ansi92">    - allowance(address,address) (public)
+</span><span class="ansi92">    - approve(address,uint256) (public)
+</span><span class="ansi92">    - balanceOf(address) (public)
+</span><span class="ansi92">    - constructor(string,string) (public)
+</span><span class="ansi92">    - decimals() (public)
+</span><span class="ansi92">    - decreaseAllowance(address,uint256) (public)
+</span><span class="ansi92">    - increaseAllowance(address,uint256) (public)
+</span><span class="ansi92">    - name() (public)
+</span><span class="ansi92">    - symbol() (public)
+</span><span class="ansi92">    - totalSupply() (public)
+</span><span class="ansi92">    - transfer(address,uint256) (public)
+</span><span class="ansi92">    - transferFrom(address,address,uint256) (public)
+</span><span class="ansi94">  - From Context
+</span><span class="ansi95">    - _msgData() (internal)
+</span><span class="ansi95">    - _msgSender() (internal)
+</span><span class="ansi94">  - From Yogi
+</span><span class="ansi92">    - constructor(uint256) (public)
+</span>
+INFO:Slither:contracts/Yogi.sol analyzed (4 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>
