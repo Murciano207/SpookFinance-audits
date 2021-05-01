@@ -11,22 +11,14 @@ body {
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
-}
-
-nav {
-  display: flex;
   flex-direction: column;
-  padding: 1rem;
-  margin-right: 1rem;
+  scrollbar-width: none;
 }
 
 .brand {
   display: flex;
+  flex-direction: row;
   align-content: center;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #fff;
   text-decoration: none !important;
 }
 
@@ -36,6 +28,7 @@ nav {
 }
 
 .brand span {
+  display: none;
   color: #fff;
   font-size: 2rem;
   line-height: 3rem;
@@ -43,10 +36,25 @@ nav {
   font-weight: 600;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  margin-right: 1rem;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
 nav a {
   padding: .5rem;
   text-decoration: none;
   color: #fff;
+  line-height: 3rem;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 nav a:hover {
@@ -56,4 +64,31 @@ nav a:hover {
 iframe {
   border: none;
   width: 100%;
+  min-height: 80vh;
+}
+
+@media only screen and (min-width:  640px) {
+  .body {
+    flex-direction: row;
+  }
+
+  .brand {
+    border-bottom: 1px solid #fff;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #fff;
+  }
+
+  .brand span {
+    display: unset;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    line-height: unset;
+  }
 }
