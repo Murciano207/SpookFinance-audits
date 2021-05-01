@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi91 { color: #ea4040; }
+.ansi92 { color: #40ea40; }
+.ansi94 { color: #4040ea; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/MerkleRedeem.sol --print human-summary
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 329 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 0
+Number of contracts: 5 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">5</span>
+Number of informational issues: <span class="ansi92">20</span>
+Number of low issues: <span class="ansi92">0</span>
+Number of medium issues: <span class="ansi92">0</span>
+Number of high issues: <span class="ansi92">0</span>
+
+ERCs: ERC20
+
++--------------+-------------+-------+--------------------+--------------+--------------------+
+|     Name     | # functions |  ERCS |     ERC20 info     | Complex code |      Features      |
++--------------+-------------+-------+--------------------+--------------+--------------------+
+| MerkleProof  |      1      |       |                    |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|    IERC20    |      6      | ERC20 |     <span class="ansi92">No Minting</span>     |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|              |             |       | <span class="ansi91">Approve Race Cond.</span> |              |                    |
+|              |             |       |                    |              |                    |
+| MerkleRedeem |      14     |       |                    |      <span class="ansi92">No</span>      | Tokens interaction |
+|              |             |       |                    |              |    AbiEncoderV2    |
++--------------+-------------+-------+--------------------+--------------+--------------------+
+INFO:Slither:contracts/MerkleRedeem.sol analyzed (5 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither contracts/MerkleRedeem.sol
+
+INFO:Detectors:<span class="ansi92">
+Parameter MerkleRedeem.disburse(address,uint256)._liquidityProvider (contracts/MerkleRedeem.sol#217) is not in mixedCase
+Parameter MerkleRedeem.disburse(address,uint256)._balance (contracts/MerkleRedeem.sol#218) is not in mixedCase
+Parameter MerkleRedeem.claimWeek(address,uint256,uint256,bytes32[])._liquidityProvider (contracts/MerkleRedeem.sol#229) is not in mixedCase
+Parameter MerkleRedeem.claimWeek(address,uint256,uint256,bytes32[])._week (contracts/MerkleRedeem.sol#230) is not in mixedCase
+Parameter MerkleRedeem.claimWeek(address,uint256,uint256,bytes32[])._claimedBalance (contracts/MerkleRedeem.sol#231) is not in mixedCase
+Parameter MerkleRedeem.claimWeek(address,uint256,uint256,bytes32[])._merkleProof (contracts/MerkleRedeem.sol#232) is not in mixedCase
+Parameter MerkleRedeem.claimWeeks(address,MerkleRedeem.Claim[])._liquidityProvider (contracts/MerkleRedeem.sol#250) is not in mixedCase
+Parameter MerkleRedeem.claimStatus(address,uint256,uint256)._liquidityProvider (contracts/MerkleRedeem.sol#270) is not in mixedCase
+Parameter MerkleRedeem.claimStatus(address,uint256,uint256)._begin (contracts/MerkleRedeem.sol#271) is not in mixedCase
+Parameter MerkleRedeem.claimStatus(address,uint256,uint256)._end (contracts/MerkleRedeem.sol#272) is not in mixedCase
+Parameter MerkleRedeem.merkleRoots(uint256,uint256)._begin (contracts/MerkleRedeem.sol#287) is not in mixedCase
+Parameter MerkleRedeem.merkleRoots(uint256,uint256)._end (contracts/MerkleRedeem.sol#288) is not in mixedCase
+Parameter MerkleRedeem.verifyClaim(address,uint256,uint256,bytes32[])._liquidityProvider (contracts/MerkleRedeem.sol#303) is not in mixedCase
+Parameter MerkleRedeem.verifyClaim(address,uint256,uint256,bytes32[])._week (contracts/MerkleRedeem.sol#304) is not in mixedCase
+Parameter MerkleRedeem.verifyClaim(address,uint256,uint256,bytes32[])._claimedBalance (contracts/MerkleRedeem.sol#305) is not in mixedCase
+Parameter MerkleRedeem.verifyClaim(address,uint256,uint256,bytes32[])._merkleProof (contracts/MerkleRedeem.sol#306) is not in mixedCase
+Parameter MerkleRedeem.seedAllocations(uint256,bytes32,uint256)._week (contracts/MerkleRedeem.sol#317) is not in mixedCase
+Parameter MerkleRedeem.seedAllocations(uint256,bytes32,uint256)._merkleRoot (contracts/MerkleRedeem.sol#318) is not in mixedCase
+Parameter MerkleRedeem.seedAllocations(uint256,bytes32,uint256)._totalAllocation (contracts/MerkleRedeem.sol#319) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions</span>
+INFO:Detectors:<span class="ansi92">
+Redundant expression "this (contracts/MerkleRedeem.sol#56)" inContext (contracts/MerkleRedeem.sol#50-59)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#redundant-statements</span>
+INFO:Detectors:<span class="ansi92">
+owner() should be declared external:
+	- Ownable.owner() (contracts/MerkleRedeem.sol#90-92)
+renounceOwnership() should be declared external:
+	- Ownable.renounceOwnership() (contracts/MerkleRedeem.sol#109-112)
+transferOwnership(address) should be declared external:
+	- Ownable.transferOwnership(address) (contracts/MerkleRedeem.sol#118-122)
+claimWeek(address,uint256,uint256,bytes32[]) should be declared external:
+	- MerkleRedeem.claimWeek(address,uint256,uint256,bytes32[]) (contracts/MerkleRedeem.sol#228-241)
+claimWeeks(address,MerkleRedeem.Claim[]) should be declared external:
+	- MerkleRedeem.claimWeeks(address,MerkleRedeem.Claim[]) (contracts/MerkleRedeem.sol#249-267)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external</span>
+INFO:Slither:contracts/MerkleRedeem.sol analyzed (5 contracts with 72 detectors), 25 result(s) found
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>

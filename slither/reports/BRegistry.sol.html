@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi91 { color: #ea4040; }
+.ansi92 { color: #40ea40; }
+.ansi93 { color: #ea9540; }
+.ansi94 { color: #4040ea; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/BRegistry.sol --print human-summary
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 632 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 0
+Number of contracts: 6 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">0</span>
+Number of informational issues: <span class="ansi92">1</span>
+Number of low issues: <span class="ansi92">4</span>
+Number of medium issues: <span class="ansi93">3</span>
+Number of high issues: <span class="ansi92">0</span>
+
+
++---------------+-------------+------+------------+--------------+----------+
+|      Name     | # functions | ERCS | ERC20 info | Complex code | Features |
++---------------+-------------+------+------------+--------------+----------+
+|      Math     |      3      |      |            |      <span class="ansi92">No</span>      |          |
+|    SafeMath   |      8      |      |            |      <span class="ansi92">No</span>      |          |
+| EnumerableSet |      6      |      |            |      <span class="ansi92">No</span>      |          |
+|     IBPool    |      3      |      |            |      <span class="ansi92">No</span>      |          |
+|   IBFactory   |      1      |      |            |      <span class="ansi92">No</span>      |          |
+|   BRegistry   |      16     |      |            |     <span class="ansi91">Yes</span>      |          |
++---------------+-------------+------+------------+--------------+----------+
+INFO:Slither:contracts/BRegistry.sol analyzed (6 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither contracts/BRegistry.sol
+
+INFO:Detectors:<span class="ansi93">
+EnumerableSet.enumerate(EnumerableSet.AddressSet).i (contracts/BRegistry.sol#296) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables</span>
+INFO:Detectors:<span class="ansi93">
+BRegistry.addPoolPair(address,address,address) (contracts/BRegistry.sol#426-460) ignores return value by _pools[key].pools.add(pool) (contracts/BRegistry.sol#434)
+BRegistry._getEffectiveLiquidityForPoolsPurge(address,address,address[]) (contracts/BRegistry.sol#547-588) ignores return value by _pools[key].pools.remove(_pools[key].pools.values[i_scope_0]) (contracts/BRegistry.sol#577)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return</span>
+INFO:Detectors:<span class="ansi92">
+BRegistry._getEffectiveLiquidityForPools(address,address,address[]) (contracts/BRegistry.sol#525-543) has external calls inside a loop: effectiveLiquidity[i] = effectiveLiquidity[i].mul(IBPool(pools[i]).getBalance(token2)) (contracts/BRegistry.sol#535)
+BRegistry._getEffectiveLiquidityForPools(address,address,address[]) (contracts/BRegistry.sol#525-543) has external calls inside a loop: effectiveLiquidity[i] = effectiveLiquidity[i].mul(IBPool(pools[i]).getBalance(token2)) (contracts/BRegistry.sol#539)
+BRegistry._getEffectiveLiquidityForPoolsPurge(address,address,address[]) (contracts/BRegistry.sol#547-588) has external calls inside a loop: _infos[pools[i]][key].liq = _infos[pools[i]][key].liq.mul(IBPool(pools[i]).getBalance(token2)) (contracts/BRegistry.sol#559)
+BRegistry._getEffectiveLiquidityForPoolsPurge(address,address,address[]) (contracts/BRegistry.sol#547-588) has external calls inside a loop: _infos[pools[i]][key].liq = _infos[pools[i]][key].liq.mul(IBPool(pools[i]).getBalance(token2)) (contracts/BRegistry.sol#564)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop</span>
+INFO:Detectors:<span class="ansi92">
+Function BRegistry._getEffectiveLiquidityForPoolsPurge(address,address,address[]) (contracts/BRegistry.sol#547-588) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions</span>
+INFO:Slither:contracts/BRegistry.sol analyzed (6 contracts with 72 detectors), 8 result(s) found
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>

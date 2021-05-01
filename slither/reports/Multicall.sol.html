@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi92 { color: #40ea40; }
+.ansi94 { color: #4040ea; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/Multicall.sol --print human-summary
+
+Compilation warnings/errors on contracts/Multicall.sol:
+contracts/Multicall.sol:8:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 51 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 0
+Number of contracts: 1 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">8</span>
+Number of informational issues: <span class="ansi92">1</span>
+Number of low issues: <span class="ansi92">1</span>
+Number of medium issues: <span class="ansi92">0</span>
+Number of high issues: <span class="ansi92">0</span>
+
+
++-----------+-------------+------+------------+--------------+--------------+
+|    Name   | # functions | ERCS | ERC20 info | Complex code |   Features   |
++-----------+-------------+------+------------+--------------+--------------+
+| Multicall |      8      |      |            |      <span class="ansi92">No</span>      | AbiEncoderV2 |
++-----------+-------------+------+------------+--------------+--------------+
+INFO:Slither:contracts/Multicall.sol analyzed (1 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither contracts/Multicall.sol
+
+Compilation warnings/errors on contracts/Multicall.sol:
+contracts/Multicall.sol:8:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+
+INFO:Detectors:<span class="ansi92">
+Multicall.aggregate(Multicall.Call[]) (contracts/Multicall.sol#20-28) has external calls inside a loop: (success,ret) = calls[i].target.call(calls[i].callData) (contracts/Multicall.sol#24)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop</span>
+INFO:Detectors:<span class="ansi92">
+Low level call in Multicall.aggregate(Multicall.Call[]) (contracts/Multicall.sol#20-28):
+	- (success,ret) = calls[i].target.call(calls[i].callData) (contracts/Multicall.sol#24)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls</span>
+INFO:Detectors:<span class="ansi92">
+aggregate(Multicall.Call[]) should be declared external:
+	- Multicall.aggregate(Multicall.Call[]) (contracts/Multicall.sol#20-28)
+getBnbBalance(address) should be declared external:
+	- Multicall.getBnbBalance(address) (contracts/Multicall.sol#30-32)
+getBlockHash(uint256) should be declared external:
+	- Multicall.getBlockHash(uint256) (contracts/Multicall.sol#33-35)
+getLastBlockHash() should be declared external:
+	- Multicall.getLastBlockHash() (contracts/Multicall.sol#36-38)
+getCurrentBlockTimestamp() should be declared external:
+	- Multicall.getCurrentBlockTimestamp() (contracts/Multicall.sol#39-41)
+getCurrentBlockDifficulty() should be declared external:
+	- Multicall.getCurrentBlockDifficulty() (contracts/Multicall.sol#42-44)
+getCurrentBlockGasLimit() should be declared external:
+	- Multicall.getCurrentBlockGasLimit() (contracts/Multicall.sol#45-47)
+getCurrentBlockCoinbase() should be declared external:
+	- Multicall.getCurrentBlockCoinbase() (contracts/Multicall.sol#48-50)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external</span>
+INFO:Slither:contracts/Multicall.sol analyzed (1 contracts with 72 detectors), 10 result(s) found
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>

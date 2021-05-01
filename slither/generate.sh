@@ -37,5 +37,13 @@ pushd slither
 # Individual reports
 erc20 Yogi.sol Yogi 0.8.3 
 audit BActions.sol 0.6.12
+audit BFactory.sol 0.5.17
+audit BRegistry.sol 0.5.17
+audit CRPFactory.sol 0.6.12
+audit ExchangeProxy.sol 0.5.17
+audit MerkleRedeem.sol 0.6.12
+audit Multicall.sol 0.5.17
+audit PoolState.sol 0.5.17
+audit ProxyRegistry.sol 0.5.17
 
 popd

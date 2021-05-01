@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi91 { color: #ea4040; }
+.ansi92 { color: #40ea40; }
+.ansi93 { color: #ea9540; }
+.ansi94 { color: #4040ea; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/CRPFactory.sol --print human-summary
+
+Compilation warnings/errors on contracts/CRPFactory.sol:
+Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+    --&gt; contracts/CRPFactory.sol:1590:1:
+     |
+1590 | contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyGuard {
+     | ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+    --&gt; contracts/CRPFactory.sol:2610:1:
+     |
+2610 | contract CRPFactory {
+     | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 2671 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 0
+Number of contracts: 14 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">4</span>
+Number of informational issues: <span class="ansi92">2</span>
+Number of low issues: <span class="ansi92">16</span>
+Number of medium issues: <span class="ansi93">1</span>
+Number of high issues: <span class="ansi92">0</span>
+
+ERCs: ERC20
+
++-------------------------+-------------+-------+------------+--------------+--------------------+
+|           Name          | # functions |  ERCS | ERC20 info | Complex code |      Features      |
++-------------------------+-------------+-------+------------+--------------+--------------------+
+|          IBPool         |      19     |       |            |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|        IBFactory        |      5      |       |            |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|    BalancerConstants    |      1      |       |            |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|     BalancerSafeMath    |      10     |       |            |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|      RightsManager      |      4      |       |            |     <span class="ansi91">Yes</span>      |    AbiEncoderV2    |
+| IConfigurableRightsPool |      6      |       |            |      <span class="ansi92">No</span>      |    AbiEncoderV2    |
+|       SafeApprove       |      1      |       |            |      <span class="ansi92">No</span>      | Tokens interaction |
+|                         |             |       |            |              |    AbiEncoderV2    |
+|     SmartPoolManager    |      15     |       |            |     <span class="ansi91">Yes</span>      | Tokens interaction |
+|                         |             |       |            |              |    AbiEncoderV2    |
+|  ConfigurableRightsPool |      67     | ERC20 | <span class="ansi92">No Minting</span> |     <span class="ansi91">Yes</span>      | Tokens interaction |
+|                         |             |       |            |              |    AbiEncoderV2    |
+|        CRPFactory       |      2      |       |            |      <span class="ansi92">No</span>      | Tokens interaction |
+|                         |             |       |            |              |    AbiEncoderV2    |
++-------------------------+-------------+-------+------------+--------------+--------------------+
+INFO:Slither:contracts/CRPFactory.sol analyzed (14 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither contracts/CRPFactory.sol
+
+Compilation warnings/errors on contracts/CRPFactory.sol:
+Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+    --&gt; contracts/CRPFactory.sol:1590:1:
+     |
+1590 | contract ConfigurableRightsPool is PCToken, BalancerOwnable, BalancerReentrancyGuard {
+     | ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+    --&gt; contracts/CRPFactory.sol:2610:1:
+     |
+2610 | contract CRPFactory {
+     | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+INFO:Detectors:<span class="ansi93">
+Reentrancy in ConfigurableRightsPool.createPoolInternal(uint256) (contracts/CRPFactory.sol#2489-2543):
+	External calls:
+	- bPool = bFactory.newBPool() (contracts/CRPFactory.sol#2510)
+	- bPool.setSwapFee(_initialSwapFee) (contracts/CRPFactory.sol#2538)
+	- bPool.setPublicSwap(true) (contracts/CRPFactory.sol#2539)
+	State variables written after the call(s):
+	- _initialSwapFee = 0 (contracts/CRPFactory.sol#2542)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1</span>
+INFO:Detectors:<span class="ansi92">
+SmartPoolManager.pokeWeights(IBPool,SmartPoolManager.GradualUpdateParams) (contracts/CRPFactory.sol#1017-1097) has external calls inside a loop: bal = bPool.getBalance(tokens[i]) (contracts/CRPFactory.sol#1087)
+SmartPoolManager.pokeWeights(IBPool,SmartPoolManager.GradualUpdateParams) (contracts/CRPFactory.sol#1017-1097) has external calls inside a loop: bPool.rebind(tokens[i],bal,newWeight) (contracts/CRPFactory.sol#1089)
+SmartPoolManager.updateWeightsGradually(IBPool,SmartPoolManager.GradualUpdateParams,uint256[],uint256,uint256,uint256) (contracts/CRPFactory.sol#1248-1297) has external calls inside a loop: gradualUpdate.startWeights[i] = bPool.getDenormalizedWeight(tokens[i]) (contracts/CRPFactory.sol#1291)
+SmartPoolManager.joinPool(IConfigurableRightsPool,IBPool,uint256,uint256[]) (contracts/CRPFactory.sol#1307-1346) has external calls inside a loop: bal = bPool.getBalance(t) (contracts/CRPFactory.sol#1336)
+SmartPoolManager.exitPool(IConfigurableRightsPool,IBPool,uint256,uint256[]) (contracts/CRPFactory.sol#1358-1399) has external calls inside a loop: bal = bPool.getBalance(t) (contracts/CRPFactory.sol#1389)
+ConfigurableRightsPool.createPoolInternal(uint256) (contracts/CRPFactory.sol#2489-2543) has external calls inside a loop: returnValue = IERC20(t).transferFrom(msg.sender,address(this),bal) (contracts/CRPFactory.sol#2521)
+ConfigurableRightsPool.createPoolInternal(uint256) (contracts/CRPFactory.sol#2489-2543) has external calls inside a loop: bPool.bind(t,bal,denorm) (contracts/CRPFactory.sol#2527)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop</span>
+INFO:Detectors:<span class="ansi92">
+Reentrancy in ConfigurableRightsPool.constructor(address,ConfigurableRightsPool.PoolParams,RightsManager.Rights) (contracts/CRPFactory.sol#1723-1765):
+	External calls:
+	- SmartPoolManager.verifyTokenCompliance(poolParams.constituentTokens) (contracts/CRPFactory.sol#1748)
+	State variables written after the call(s):
+	- _initialBalances = poolParams.tokenBalances (contracts/CRPFactory.sol#1753)
+	- _initialSwapFee = poolParams.swapFee (contracts/CRPFactory.sol#1754)
+	- _initialTokens = poolParams.constituentTokens (contracts/CRPFactory.sol#1752)
+	- addTokenTimeLockInBlocks = DEFAULT_ADD_TOKEN_TIME_LOCK_IN_BLOCKS (contracts/CRPFactory.sol#1758)
+	- bFactory = IBFactory(factoryAddress) (contracts/CRPFactory.sol#1750)
+	- bspCap = BalancerConstants.MAX_UINT (contracts/CRPFactory.sol#1764)
+	- gradualUpdate.startWeights = poolParams.tokenWeights (contracts/CRPFactory.sol#1760)
+	- gradualUpdate.startBlock = 0 (contracts/CRPFactory.sol#1762)
+	- minimumWeightChangeBlockPeriod = DEFAULT_MIN_WEIGHT_CHANGE_BLOCK_PERIOD (contracts/CRPFactory.sol#1757)
+	- rights = rightsStruct (contracts/CRPFactory.sol#1751)
+Reentrancy in ConfigurableRightsPool.createPoolInternal(uint256) (contracts/CRPFactory.sol#2489-2543):
+	External calls:
+	- bPool = bFactory.newBPool() (contracts/CRPFactory.sol#2510)
+	State variables written after the call(s):
+	- _initialTokens.pop() (contracts/CRPFactory.sol#2533)
+Reentrancy in ConfigurableRightsPool.exitPool(uint256,uint256[]) (contracts/CRPFactory.sol#2130-2165):
+	External calls:
+	- lockUnderlyingPool() (contracts/CRPFactory.sol#2135)
+		- bPool.setPublicSwap(false) (contracts/CRPFactory.sol#1698)
+		- bPool.setPublicSwap(origSwapState) (contracts/CRPFactory.sol#1700)
+	State variables written after the call(s):
+	- _pullPoolShare(msg.sender,poolAmountIn) (contracts/CRPFactory.sol#2150)
+		- _balance[sender] = BalancerSafeMath.bsub(_balance[sender],amount) (contracts/CRPFactory.sol#581)
+		- _balance[recipient] = BalancerSafeMath.badd(_balance[recipient],amount) (contracts/CRPFactory.sol#582)
+	- _pushPoolShare(address(bFactory),exitFee) (contracts/CRPFactory.sol#2151)
+		- _balance[sender] = BalancerSafeMath.bsub(_balance[sender],amount) (contracts/CRPFactory.sol#581)
+		- _balance[recipient] = BalancerSafeMath.badd(_balance[recipient],amount) (contracts/CRPFactory.sol#582)
+	- _burnPoolShare(pAiAfterExitFee) (contracts/CRPFactory.sol#2152)
+		- _balance[address(this)] = BalancerSafeMath.bsub(_balance[address(this)],amount) (contracts/CRPFactory.sol#568)
+	- _burnPoolShare(pAiAfterExitFee) (contracts/CRPFactory.sol#2152)
+		- varTotalSupply = BalancerSafeMath.bsub(varTotalSupply,amount) (contracts/CRPFactory.sol#569)
+Reentrancy in ConfigurableRightsPool.joinPool(uint256,uint256[]) (contracts/CRPFactory.sol#2084-2121):
+	External calls:
+	- lockUnderlyingPool() (contracts/CRPFactory.sol#2089)
+		- bPool.setPublicSwap(false) (contracts/CRPFactory.sol#1698)
+		- bPool.setPublicSwap(origSwapState) (contracts/CRPFactory.sol#1700)
+	State variables written after the call(s):
+	- _mintPoolShare(poolAmountOut) (contracts/CRPFactory.sol#2119)
+		- _balance[address(this)] = BalancerSafeMath.badd(_balance[address(this)],amount) (contracts/CRPFactory.sol#555)
+	- _pushPoolShare(msg.sender,poolAmountOut) (contracts/CRPFactory.sol#2120)
+		- _balance[sender] = BalancerSafeMath.bsub(_balance[sender],amount) (contracts/CRPFactory.sol#581)
+		- _balance[recipient] = BalancerSafeMath.badd(_balance[recipient],amount) (contracts/CRPFactory.sol#582)
+	- _mintPoolShare(poolAmountOut) (contracts/CRPFactory.sol#2119)
+		- varTotalSupply = BalancerSafeMath.badd(varTotalSupply,amount) (contracts/CRPFactory.sol#556)
+Reentrancy in CRPFactory.newCrp(address,ConfigurableRightsPool.PoolParams,RightsManager.Rights) (contracts/CRPFactory.sol#2633-2661):
+	External calls:
+	- crp = new ConfigurableRightsPool(factoryAddress,poolParams,rights) (contracts/CRPFactory.sol#2647-2651)
+	State variables written after the call(s):
+	- _isCrp[address(crp)] = true (contracts/CRPFactory.sol#2655)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2</span>
+INFO:Detectors:<span class="ansi92">
+Reentrancy in ConfigurableRightsPool.commitAddToken(address,uint256,uint256) (contracts/CRPFactory.sol#2001-2030):
+	External calls:
+	- SmartPoolManager.verifyTokenCompliance(token) (contracts/CRPFactory.sol#2018)
+	Event emitted after the call(s):
+	- NewTokenCommitted(token,address(this),msg.sender) (contracts/CRPFactory.sol#2020)
+Reentrancy in ConfigurableRightsPool.exitPool(uint256,uint256[]) (contracts/CRPFactory.sol#2130-2165):
+	External calls:
+	- lockUnderlyingPool() (contracts/CRPFactory.sol#2135)
+		- bPool.setPublicSwap(false) (contracts/CRPFactory.sol#1698)
+		- bPool.setPublicSwap(origSwapState) (contracts/CRPFactory.sol#1700)
+	Event emitted after the call(s):
+	- LogExit(msg.sender,t,tokenAmountOut) (contracts/CRPFactory.sol#2161)
+	- Transfer(address(this),address(0),amount) (contracts/CRPFactory.sol#571)
+		- _burnPoolShare(pAiAfterExitFee) (contracts/CRPFactory.sol#2152)
+	- Transfer(sender,recipient,amount) (contracts/CRPFactory.sol#584)
+		- _pushPoolShare(address(bFactory),exitFee) (contracts/CRPFactory.sol#2151)
+	- Transfer(sender,recipient,amount) (contracts/CRPFactory.sol#584)
+		- _pullPoolShare(msg.sender,poolAmountIn) (contracts/CRPFactory.sol#2150)
+Reentrancy in ConfigurableRightsPool.joinPool(uint256,uint256[]) (contracts/CRPFactory.sol#2084-2121):
+	External calls:
+	- lockUnderlyingPool() (contracts/CRPFactory.sol#2089)
+		- bPool.setPublicSwap(false) (contracts/CRPFactory.sol#1698)
+		- bPool.setPublicSwap(origSwapState) (contracts/CRPFactory.sol#1700)
+	Event emitted after the call(s):
+	- LogJoin(msg.sender,t,tokenAmountIn) (contracts/CRPFactory.sol#2114)
+	- Transfer(sender,recipient,amount) (contracts/CRPFactory.sol#584)
+		- _pushPoolShare(msg.sender,poolAmountOut) (contracts/CRPFactory.sol#2120)
+	- Transfer(address(0),address(this),amount) (contracts/CRPFactory.sol#558)
+		- _mintPoolShare(poolAmountOut) (contracts/CRPFactory.sol#2119)
+Reentrancy in CRPFactory.newCrp(address,ConfigurableRightsPool.PoolParams,RightsManager.Rights) (contracts/CRPFactory.sol#2633-2661):
+	External calls:
+	- crp = new ConfigurableRightsPool(factoryAddress,poolParams,rights) (contracts/CRPFactory.sol#2647-2651)
+	Event emitted after the call(s):
+	- LogNewCrp(msg.sender,address(crp)) (contracts/CRPFactory.sol#2653)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3</span>
+INFO:Detectors:<span class="ansi92">
+ConfigurableRightsPool (contracts/CRPFactory.sol#1590-2594) should inherit from IConfigurableRightsPool (contracts/CRPFactory.sol#849-856)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-inheritance</span>
+INFO:Detectors:<span class="ansi92">
+Function IBPool.EXIT_FEE() (contracts/CRPFactory.sol#25) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions</span>
+INFO:Detectors:<span class="ansi92">
+mintPoolShareFromLib(uint256) should be declared external:
+	- ConfigurableRightsPool.mintPoolShareFromLib(uint256) (contracts/CRPFactory.sol#2454-2458)
+pushPoolShareFromLib(address,uint256) should be declared external:
+	- ConfigurableRightsPool.pushPoolShareFromLib(address,uint256) (contracts/CRPFactory.sol#2460-2464)
+pullPoolShareFromLib(address,uint256) should be declared external:
+	- ConfigurableRightsPool.pullPoolShareFromLib(address,uint256) (contracts/CRPFactory.sol#2466-2470)
+burnPoolShareFromLib(uint256) should be declared external:
+	- ConfigurableRightsPool.burnPoolShareFromLib(uint256) (contracts/CRPFactory.sol#2472-2476)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external</span>
+INFO:Slither:contracts/CRPFactory.sol analyzed (14 contracts with 72 detectors), 23 result(s) found
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>

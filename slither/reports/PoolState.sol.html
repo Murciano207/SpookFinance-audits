@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi92 { color: #40ea40; }
+.ansi94 { color: #4040ea; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/PoolState.sol --print human-summary
+
+Compilation warnings/errors on contracts/PoolState.sol:
+contracts/PoolState.sol:9:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 45 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 11
+Number of contracts: 1 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">0</span>
+Number of informational issues: <span class="ansi92">1</span>
+Number of low issues: <span class="ansi92">0</span>
+Number of medium issues: <span class="ansi92">0</span>
+Number of high issues: <span class="ansi92">0</span>
+
+
++-----------+-------------+------+------------+--------------+--------------+
+|    Name   | # functions | ERCS | ERC20 info | Complex code |   Features   |
++-----------+-------------+------+------------+--------------+--------------+
+| PoolState |      2      |      |            |      <span class="ansi92">No</span>      | AbiEncoderV2 |
+|           |             |      |            |              |   Assembly   |
++-----------+-------------+------+------------+--------------+--------------+
+INFO:Slither:contracts/PoolState.sol analyzed (1 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither contracts/PoolState.sol
+
+Compilation warnings/errors on contracts/PoolState.sol:
+contracts/PoolState.sol:9:1: Warning: Experimental features are turned on. Do not use experimental features on live deployments.
+pragma experimental ABIEncoderV2;
+^-------------------------------^
+
+INFO:Detectors:<span class="ansi92">
+PoolState.getUint(address,bytes) (contracts/PoolState.sol#13-26) uses assembly
+	- INLINE ASM (contracts/PoolState.sol#16-25)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage</span>
+INFO:Slither:contracts/PoolState.sol analyzed (1 contracts with 72 detectors), 1 result(s) found
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>

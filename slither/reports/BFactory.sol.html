@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style type="text/css">
+.ansi2html-content { display: inline; white-space: pre-wrap; word-wrap: break-word; }
+.body_foreground { color: #AAAAAA; }
+.body_background { background-color: #000000; }
+.body_foreground > .bold,.bold > .body_foreground, body.body_foreground > pre > .bold { color: #FFFFFF; font-weight: normal; }
+.inv_foreground { color: #000000; }
+.inv_background { background-color: #AAAAAA; }
+.ansi92 { color: #40ea40; }
+.ansi94 { color: #4040ea; }
+</style>
+</head>
+<body class="body_foreground body_background" style="font-size: normal;" >
+<pre class="ansi2html-content">
+$ slither contracts/BFactory.sol --print human-summary
+
+INFO:Printers:
+Compiled with solc
+Number of lines: 1360 (+ 0 in dependencies, + 0 in tests)
+Number of assembly lines: 0
+Number of contracts: 10 (+ 0 in dependencies, + 0 tests) 
+
+Number of optimization issues: <span class="ansi92">6</span>
+Number of informational issues: <span class="ansi92">12</span>
+Number of low issues: <span class="ansi92">3</span>
+Number of medium issues: <span class="ansi92">0</span>
+Number of high issues: <span class="ansi92">0</span>
+
+ERCs: ERC20
+
++----------+-------------+-------+------------+--------------+--------------------+
+|   Name   | # functions |  ERCS | ERC20 info | Complex code |      Features      |
++----------+-------------+-------+------------+--------------+--------------------+
+|  BPool   |      80     | ERC20 | <span class="ansi92">No Minting</span> |      <span class="ansi92">No</span>      | Tokens interaction |
+|          |             |       |            |              |                    |
+| BFactory |      8      |       |            |      <span class="ansi92">No</span>      | Tokens interaction |
++----------+-------------+-------+------------+--------------+--------------------+
+INFO:Slither:contracts/BFactory.sol analyzed (10 contracts)
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+$ slither contracts/BFactory.sol
+
+INFO:Detectors:<span class="ansi92">
+BPool.setSwapFee(uint256) (contracts/BFactory.sol#751-761) should emit an event for: 
+	- _swapFee = swapFee (contracts/BFactory.sol#760) 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-events-arithmetic</span>
+INFO:Detectors:<span class="ansi92">
+BPool.setController(address).manager (contracts/BFactory.sol#763) lacks a zero-check on :
+		- _controller = manager (contracts/BFactory.sol#769)
+BFactory.setYStudio(address).y (contracts/BFactory.sol#1344) lacks a zero-check on :
+		- _ystudio = y (contracts/BFactory.sol#1349)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation</span>
+INFO:Detectors:<span class="ansi92">
+Variable BTokenBase._balance (contracts/BFactory.sol#215) is not in mixedCase
+Variable BTokenBase._allowance (contracts/BFactory.sol#216) is not in mixedCase
+Variable BTokenBase._totalSupply (contracts/BFactory.sol#217) is not in mixedCase
+Event BPoolLOG_SWAP(address,address,address,uint256,uint256) (contracts/BFactory.sol#586-592) is not in CapWords
+Event BPoolLOG_JOIN(address,address,uint256) (contracts/BFactory.sol#594-598) is not in CapWords
+Event BPoolLOG_EXIT(address,address,uint256) (contracts/BFactory.sol#600-604) is not in CapWords
+Event BPoolLOG_CALL(bytes4,address,bytes) (contracts/BFactory.sol#606-610) is not in CapWords
+Modifier BPool._logs_() (contracts/BFactory.sol#612-615) is not in mixedCase
+Modifier BPool._lock_() (contracts/BFactory.sol#617-622) is not in mixedCase
+Modifier BPool._viewlock_() (contracts/BFactory.sol#624-627) is not in mixedCase
+Event BFactoryLOG_NEW_POOL(address,address) (contracts/BFactory.sol#1302-1305) is not in CapWords
+Event BFactoryLOG_YSTUDIO(address,address) (contracts/BFactory.sol#1307-1310) is not in CapWords
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions</span>
+INFO:Detectors:<span class="ansi92">
+BToken._decimals (contracts/BFactory.sol#255) should be constant
+BToken._name (contracts/BFactory.sol#253) should be constant
+BToken._symbol (contracts/BFactory.sol#254) should be constant
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-constant</span>
+INFO:Detectors:<span class="ansi92">
+name() should be declared external:
+	- BToken.name() (contracts/BFactory.sol#257-259)
+symbol() should be declared external:
+	- BToken.symbol() (contracts/BFactory.sol#261-263)
+decimals() should be declared external:
+	- BToken.decimals() (contracts/BFactory.sol#265-267)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external</span>
+INFO:Slither:contracts/BFactory.sol analyzed (10 contracts with 72 detectors), 21 result(s) found
+INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+
+
+
+</pre>
+</body>
+
+</html>
