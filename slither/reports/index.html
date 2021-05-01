@@ -36,13 +36,14 @@
         <a href="#PoolState.sol">PoolState.sol</a>
         <a href="#ProxyRegistry.sol">ProxyRegistry.sol</a>
       </nav>
-      <iframe id="reportViewer" src="./Yogi.sol.html"/>
+      <iframe id="reportViewer" src="./Yogi.sol.html"></iframe>
     </div>
     <script>
-      console.log('b');
-      window.onhashchange = function() { 
-        console.log('a');
+      function onHashChange() {
+        document.getElementById("reportViewer").src = `./${location.hash.substr(1)}.html`
       }
+
+      window.addEventListener("hashchange", onHashChange, false);
     </script>
 	</body>
 </html>
