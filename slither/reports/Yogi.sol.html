@@ -11,9 +11,6 @@
 .inv_foreground { color: #000000; }
 .inv_background { background-color: #AAAAAA; }
 .ansi91 { color: #ea4040; }
-.ansi92 { color: #40ea40; }
-.ansi94 { color: #4040ea; }
-.ansi95 { color: #ff90e8; }
 </style>
 </head>
 <body class="body_foreground body_background" style="font-size: normal;" >
@@ -21,183 +18,291 @@
 
 $ slither contracts/Yogi.sol --print human-summary
 
-INFO:Printers:
-Compiled with solc
-Number of lines: 421 (+ 0 in dependencies, + 0 in tests)
-Number of assembly lines: 0
-Number of contracts: 4 (+ 0 in dependencies, + 0 tests) 
+Compilation warnings/errors on contracts/Yogi.sol:
+<span class="ansi91">Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.</span>
+--&gt; contracts/Yogi.sol
 
-Number of optimization issues: <span class="ansi92">11</span>
-Number of informational issues: <span class="ansi92">6</span>
-Number of low issues: <span class="ansi92">0</span>
-Number of medium issues: <span class="ansi92">0</span>
-Number of high issues: <span class="ansi92">0</span>
 
-ERCs: ERC20
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 
-+------+-------------+-------+--------------------+--------------+----------+
-| Name | # functions |  ERCS |     ERC20 info     | Complex code | Features |
-+------+-------------+-------+--------------------+--------------+----------+
-| Yogi |      26     | ERC20 |     <span class="ansi92">No Minting</span>     |      <span class="ansi92">No</span>      |          |
-|      |             |       | <span class="ansi91">Approve Race Cond.</span> |              |          |
-|      |             |       |                    |              |          |
-+------+-------------+-------+--------------------+--------------+----------+
-INFO:Slither:contracts/Yogi.sol analyzed (4 contracts)
-INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 721, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 71, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 1076, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
+ERROR:root:None
+ERROR:root:Error in contracts/Yogi.sol
+ERROR:root:Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 721, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 71, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 1076, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
+
 
 
 $ slither contracts/Yogi.sol
 
-INFO:Detectors:<span class="ansi92">
-Pragma version^0.8.0 (contracts/Yogi.sol#7) necessitates a version too recent to be trusted. Consider deploying with 0.6.12/0.7.6
-Pragma version^0.8.0 (contracts/Yogi.sol#86) necessitates a version too recent to be trusted. Consider deploying with 0.6.12/0.7.6
-Pragma version^0.8.0 (contracts/Yogi.sol#112) necessitates a version too recent to be trusted. Consider deploying with 0.6.12/0.7.6
-Pragma version^0.8.0 (contracts/Yogi.sol#415) necessitates a version too recent to be trusted. Consider deploying with 0.6.12/0.7.6
-solc-0.8.3 is not recommended for deployment
-Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity</span>
-INFO:Detectors:<span class="ansi92">
-Redundant expression "this (contracts/Yogi.sol#104)" inContext (contracts/Yogi.sol#98-107)
-Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#redundant-statements</span>
-INFO:Detectors:<span class="ansi92">
-name() should be declared external:
-	- ERC20.name() (contracts/Yogi.sol#166-168)
-symbol() should be declared external:
-	- ERC20.symbol() (contracts/Yogi.sol#174-176)
-decimals() should be declared external:
-	- ERC20.decimals() (contracts/Yogi.sol#191-193)
-totalSupply() should be declared external:
-	- ERC20.totalSupply() (contracts/Yogi.sol#198-200)
-balanceOf(address) should be declared external:
-	- ERC20.balanceOf(address) (contracts/Yogi.sol#205-207)
-transfer(address,uint256) should be declared external:
-	- ERC20.transfer(address,uint256) (contracts/Yogi.sol#217-220)
-allowance(address,address) should be declared external:
-	- ERC20.allowance(address,address) (contracts/Yogi.sol#225-227)
-approve(address,uint256) should be declared external:
-	- ERC20.approve(address,uint256) (contracts/Yogi.sol#236-239)
-transferFrom(address,address,uint256) should be declared external:
-	- ERC20.transferFrom(address,address,uint256) (contracts/Yogi.sol#254-262)
-increaseAllowance(address,uint256) should be declared external:
-	- ERC20.increaseAllowance(address,uint256) (contracts/Yogi.sol#276-279)
-decreaseAllowance(address,uint256) should be declared external:
-	- ERC20.decreaseAllowance(address,uint256) (contracts/Yogi.sol#295-301)
-Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external</span>
-INFO:Slither:contracts/Yogi.sol analyzed (4 contracts with 72 detectors), 17 result(s) found
-INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+Compilation warnings/errors on contracts/Yogi.sol:
+<span class="ansi91">Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.</span>
+--&gt; contracts/Yogi.sol
+
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 721, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 71, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 1076, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
+ERROR:root:None
+ERROR:root:Error in contracts/Yogi.sol
+ERROR:root:Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 721, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 71, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 1076, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
+
 
 
 $ slither-check-erc contracts/Yogi.sol Yogi
 
-# Check Yogi
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 
-## Check functions
-[✓] totalSupply() is present
-	[✓] totalSupply() -&gt; () (correct return value)
-	[✓] totalSupply() is view
-[✓] balanceOf(address) is present
-	[✓] balanceOf(address) -&gt; () (correct return value)
-	[✓] balanceOf(address) is view
-[✓] transfer(address,uint256) is present
-	[✓] transfer(address,uint256) -&gt; () (correct return value)
-	[✓] Transfer(address,address,uint256) is emitted
-[✓] transferFrom(address,address,uint256) is present
-	[✓] transferFrom(address,address,uint256) -&gt; () (correct return value)
-	[✓] Transfer(address,address,uint256) is emitted
-[✓] approve(address,uint256) is present
-	[✓] approve(address,uint256) -&gt; () (correct return value)
-	[✓] Approval(address,address,uint256) is emitted
-[✓] allowance(address,address) is present
-	[✓] allowance(address,address) -&gt; () (correct return value)
-	[✓] allowance(address,address) is view
-[✓] name() is present
-	[✓] name() -&gt; () (correct return value)
-	[✓] name() is view
-[✓] symbol() is present
-	[✓] symbol() -&gt; () (correct return value)
-	[✓] symbol() is view
-[✓] decimals() is present
-	[✓] decimals() -&gt; () (correct return value)
-	[✓] decimals() is view
+During handling of the above exception, another exception occurred:
 
-## Check events
-[✓] Transfer(address,address,uint256) is present
-	[✓] parameter 0 is indexed
-	[✓] parameter 1 is indexed
-[✓] Approval(address,address,uint256) is present
-	[✓] parameter 0 is indexed
-	[✓] parameter 1 is indexed
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/slither.py", line 76, in __init__
+    crytic_compile = CryticCompile(target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
 
 
-	[✓] Yogi has increaseAllowance(address,uint256)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/bin/slither-check-erc", line 8, in &lt;module&gt;
+    sys.exit(main())
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/tools/erc_conformance/__main__.py", line 76, in main
+    slither = Slither(args.project, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/slither.py", line 80, in __init__
+    raise SlitherError(f"Invalid compilation: \n{str(e)}")
+slither.exceptions.SlitherError: Invalid compilation: 
+Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
 
 
 $ slither contracts/Yogi.sol --print contract-summary
 
-INFO:Printers:<span class="ansi94">
-+ Contract IERC20
-</span><span class="ansi94">  - From IERC20
-</span><span class="ansi92">    - allowance(address,address) (external)
-</span><span class="ansi92">    - approve(address,uint256) (external)
-</span><span class="ansi92">    - balanceOf(address) (external)
-</span><span class="ansi92">    - totalSupply() (external)
-</span><span class="ansi92">    - transfer(address,uint256) (external)
-</span><span class="ansi92">    - transferFrom(address,address,uint256) (external)
-</span><span class="ansi94">
-+ Contract Context
-</span><span class="ansi94">  - From Context
-</span><span class="ansi95">    - _msgData() (internal)
-</span><span class="ansi95">    - _msgSender() (internal)
-</span><span class="ansi94">
-+ Contract ERC20
-</span><span class="ansi94">  - From Context
-</span><span class="ansi95">    - _msgData() (internal)
-</span><span class="ansi95">    - _msgSender() (internal)
-</span><span class="ansi94">  - From ERC20
-</span><span class="ansi95">    - _approve(address,address,uint256) (internal)
-</span><span class="ansi95">    - _beforeTokenTransfer(address,address,uint256) (internal)
-</span><span class="ansi95">    - _burn(address,uint256) (internal)
-</span><span class="ansi95">    - _mint(address,uint256) (internal)
-</span><span class="ansi95">    - _transfer(address,address,uint256) (internal)
-</span><span class="ansi92">    - allowance(address,address) (public)
-</span><span class="ansi92">    - approve(address,uint256) (public)
-</span><span class="ansi92">    - balanceOf(address) (public)
-</span><span class="ansi92">    - constructor(string,string) (public)
-</span><span class="ansi92">    - decimals() (public)
-</span><span class="ansi92">    - decreaseAllowance(address,uint256) (public)
-</span><span class="ansi92">    - increaseAllowance(address,uint256) (public)
-</span><span class="ansi92">    - name() (public)
-</span><span class="ansi92">    - symbol() (public)
-</span><span class="ansi92">    - totalSupply() (public)
-</span><span class="ansi92">    - transfer(address,uint256) (public)
-</span><span class="ansi92">    - transferFrom(address,address,uint256) (public)
-</span><span class="ansi94">
-+ Contract Yogi (Most derived contract)
-</span><span class="ansi94">  - From ERC20
-</span><span class="ansi95">    - _approve(address,address,uint256) (internal)
-</span><span class="ansi95">    - _beforeTokenTransfer(address,address,uint256) (internal)
-</span><span class="ansi95">    - _burn(address,uint256) (internal)
-</span><span class="ansi95">    - _mint(address,uint256) (internal)
-</span><span class="ansi95">    - _transfer(address,address,uint256) (internal)
-</span><span class="ansi92">    - allowance(address,address) (public)
-</span><span class="ansi92">    - approve(address,uint256) (public)
-</span><span class="ansi92">    - balanceOf(address) (public)
-</span><span class="ansi92">    - constructor(string,string) (public)
-</span><span class="ansi92">    - decimals() (public)
-</span><span class="ansi92">    - decreaseAllowance(address,uint256) (public)
-</span><span class="ansi92">    - increaseAllowance(address,uint256) (public)
-</span><span class="ansi92">    - name() (public)
-</span><span class="ansi92">    - symbol() (public)
-</span><span class="ansi92">    - totalSupply() (public)
-</span><span class="ansi92">    - transfer(address,uint256) (public)
-</span><span class="ansi92">    - transferFrom(address,address,uint256) (public)
-</span><span class="ansi94">  - From Context
-</span><span class="ansi95">    - _msgData() (internal)
-</span><span class="ansi95">    - _msgSender() (internal)
-</span><span class="ansi94">  - From Yogi
-</span><span class="ansi92">    - constructor(uint256) (public)
-</span>
-INFO:Slither:contracts/Yogi.sol analyzed (4 contracts)
-INFO:Slither:<span class="ansi94">Use https://crytic.io/ to get access to additional detectors and Github integration</span>
+Compilation warnings/errors on contracts/Yogi.sol:
+<span class="ansi91">Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.</span>
+--&gt; contracts/Yogi.sol
+
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 721, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 71, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 1076, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
+ERROR:root:None
+ERROR:root:Error in contracts/Yogi.sol
+ERROR:root:Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 409, in _run_solc
+    ret = json.loads(stdout)
+  File "/usr/lib64/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib64/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib64/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 721, in main_impl
+    ) = process_all(filename, args, detector_classes, printer_classes)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/slither/__main__.py", line 71, in process_all
+    compilations = compile_all(target, **vars(args))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 1076, in compile_all
+    compilations.append(CryticCompile(target, **kwargs))
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 137, in __init__
+    self._compile(**kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/crytic_compile.py", line 987, in _compile
+    self._platform.compile(self, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 108, in compile
+    targets_json = _get_targets_json(crytic_compile, self._target, **kwargs)
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 209, in _get_targets_json
+    return _run_solc(
+  File "/home/lkynes/.local/lib/python3.9/site-packages/crytic_compile/platform/solc.py", line 413, in _run_solc
+    raise InvalidCompilation(f"Invalid solc compilation {stderr}")
+crytic_compile.platform.exceptions.InvalidCompilation: Invalid solc compilation Error: Multiple SPDX license identifiers found in source file. Use "AND" or "OR" to combine multiple licenses. Please see https://spdx.org for more information.
+--&gt; contracts/Yogi.sol
+
+
+
 
 
 

@@ -83,6 +83,8 @@ interface IERC20 {
 
 // File @openzeppelin/contracts/utils/Context.sol@v4.0.0
 
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
 /*
@@ -108,6 +110,8 @@ abstract contract Context {
 
 
 // File @openzeppelin/contracts/token/ERC20/ERC20.sol@v4.0.0
+
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
 
@@ -411,6 +415,8 @@ contract ERC20 is Context, IERC20 {
 
 
 // File contracts/Yogi.sol
+
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.0;
 
